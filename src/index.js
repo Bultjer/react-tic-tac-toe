@@ -23,24 +23,32 @@ class Board extends React.PureComponent {
     );
   }
 
+  renderRow(rows, suqareIndex) {
+    const row = [];
+    for(let rowIndex = 0; rowIndex < rows; rowIndex++) {
+      row.push(this.renderSquare(suqareIndex + rowIndex));
+    }
+    return row;
+  }
+
+  renderBoard(rows, columns) {
+    const board = [];
+    
+    for(let suqareIndex = 0; suqareIndex < rows * columns; suqareIndex += rows) {
+      board.push(
+        <div className="board-row">
+          {this.renderRow(rows, suqareIndex)}
+        </div>
+        );
+    }
+    return board;
+  }
+
   render() {
+ 
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {this.renderBoard(3, 3)}
       </div>
     );
   }
